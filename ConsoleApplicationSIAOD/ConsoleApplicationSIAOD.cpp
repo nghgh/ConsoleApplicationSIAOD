@@ -59,6 +59,7 @@ void DigitCount() {
 
 int main()
 {
+    cout << "test change";
     setlocale(LC_ALL, "Russian");
     string filename;
     cout << "старт программы\n";
