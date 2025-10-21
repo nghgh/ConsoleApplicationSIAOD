@@ -42,7 +42,7 @@ void AddNumbers(string filename, int Numbers, int EnteredNumber) {
     while (Numbers != 0) {
         cout << "Введите число: \n"; cin >> EnteredNumber;
         Numbers--;
-        file << EnteredNumber << endl;
+        file <<endl<< EnteredNumber;
     }
 
 }
@@ -68,9 +68,22 @@ void FindIndexDigit(string filename, int index){
 }
 
 
-void DigitCount() {
+void DigitCount(string filename) {
+    ifstream file(filename);
+    if (!file.is_open()) {
+        cout << "Ошибка открытия файла";
+        return;
+    }
+    int NumberCount = 0;
+    int number;
+    while (file >> number) {
+        NumberCount++;
+    }
+    cout << "Чисел в файле: " << NumberCount << endl;
+    file.close();
+    }
 
-}
+
 
 
 int main()
@@ -107,7 +120,7 @@ int main()
             break;
         }
         case 4: {
-
+            DigitCount(filename);
         }
 
         }
