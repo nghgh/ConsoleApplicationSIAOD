@@ -47,8 +47,24 @@ void AddNumbers(string filename, int Numbers, int EnteredNumber) {
 
 }
 
-void FindIndexDigit(){
-
+void FindIndexDigit(string filename, int index){
+    ifstream file(filename);
+    if (!file.is_open()) {
+        cout << "Ошибка открытия файла";
+        return;
+    }
+    int number;
+    int currentIndex = 0;
+    while (file >> number) {
+        if (currentIndex == index) {
+            cout << "Число с номером " << index << ": " << number << endl;
+            file.close();
+            return;
+        }
+        currentIndex++;
+    }
+    cout << "Число с номером" << index << "не найдено в файле\n";
+    file.close();
 }
 
 
@@ -84,7 +100,11 @@ int main()
 
         }
         case 3: {
-
+            int index;
+            cout << "Введите индекс числа: ";
+            cin >> index;
+            FindIndexDigit(filename, index);
+            break;
         }
         case 4: {
 
