@@ -38,7 +38,6 @@ void AddNumbers(string filename, int Numbers, int EnteredNumber) {
         cout << "Ошибка открытия файла! \n";
         return;
     }
-    cout << "Сколько добавить чисел? \n"; cin >> Numbers;
     while (Numbers != 0) {
         cout << "Введите число: \n"; cin >> EnteredNumber;
         Numbers--;
@@ -83,7 +82,9 @@ void DigitCount(string filename) {
     file.close();
     }
 
+void Operation() {
 
+}
 
 
 int main()
@@ -108,6 +109,7 @@ int main()
             break;
         }
         case 2: {
+            cout << "Сколько добавить чисел? \n"; cin >> Numbers;
             AddNumbers(filename, Numbers, EnteredNumber);
             break;
 
@@ -122,7 +124,9 @@ int main()
         case 4: {
             DigitCount(filename);
         }
-
+        case 5: {
+            cout << "побитовые операции\n";
+        }
         }
     }
 }
