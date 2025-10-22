@@ -81,15 +81,75 @@ void DigitCount(string filename) {
     cout << "Чисел в файле: " << NumberCount << endl;
     file.close();
     }
+void printBinary(int num) {
+    for (int i = 31; i >= 0; i--) {
+        cout << ((num >> i) & 1);
+        if (i % 8 == 0 && i != 0) cout << " ";
+    }
+}
+void BitwiseOperations(string inputFile, string outputFile, int n) {
+    ifstream in(inputFile);
+    ofstream out(outputFile);
+    if (!in.is_open()) {
+        cout << "Ошибка открытия файла";
+        return;
+    }
+    int num;
+    cout << "Исходные и полученные числа:\n";
+    while (in >> num) {
+        cout << "Исходное: " << num << " (двоично: ";
+        printBinary(num);
+        cout << ")\n";
 
-void Operation() {
+        // 1.3.6.1: Установить биты 3, 11, 5
+        int mask1 = 0x828;
+        int result1 = num | mask1;
 
+        cout << "После упр.1: " << result1 << " (двоично: ";
+        printBinary(result1);
+        cout << ")\n";
+
+        // 1.3.6.2: Обнулить четыре младших бита
+        int mask2 = 0xFFFFFFF0;
+        int result2 = result1 & mask2;
+
+        cout << "После упр.2: " << result2 << " (двоично: ";
+        printBinary(result2);
+        cout << ")\n";
+
+        // 1.3.6.3: Умножить на 128
+        int result3 = result2 << 7; // 2^7 = 128
+
+        cout << "После упр.3: " << result3 << " (двоично: ";
+        printBinary(result3);
+        cout << ")\n";
+
+        // 1.3.6.4: Разделить на 128
+        int result4 = result3 >> 7;
+
+        cout << "После упр.4: " << result4 << " (двоично: ";
+        printBinary(result4);
+        cout << ")\n";
+
+        // 1.3.6.5: Установить n-ый бит в 1, используя маску 2 (единица в старшем разряде)
+        int mask5 = 1 << (31 - n);
+        int result5 = result4 | mask5;
+
+        cout << "После упр.5: " << result5 << " (двоично: ";
+        printBinary(result5);
+        cout << ")\n\n";
+
+        out << result5 << endl;
+    }
+
+    in.close();
+    out.close();
+    cout << "Результаты записаны в файл: " << outputFile << endl;
 }
 
 
 int main()
 {
-    cout << "test change";
     setlocale(LC_ALL, "Russian");
     string filename;
     cout << "старт программы\n";
@@ -125,7 +185,14 @@ int main()
             DigitCount(filename);
         }
         case 5: {
-            cout << "побитовые операции\n";
+            string outputFile;
+            int n;
+            cout << "Введите имя файла для результатов: ";
+            cin >> outputFile;
+            cout << "Введите номер бита n для операции 1.3.6.5: ";
+            cin >> n;
+            BitwiseOperations(filename, outputFile, n);
+            break;
         }
         }
     }
