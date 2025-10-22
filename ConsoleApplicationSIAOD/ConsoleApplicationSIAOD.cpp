@@ -101,7 +101,7 @@ void BitwiseOperations(string inputFile, string outputFile, int n) {
         printBinary(num);
         cout << ")\n";
 
-        // 1.3.6.1: Установить биты 3, 11, 5
+        // 1 установить биты 3 11 5
         int mask1 = 0x828;
         int result1 = num | mask1;
 
@@ -109,7 +109,7 @@ void BitwiseOperations(string inputFile, string outputFile, int n) {
         printBinary(result1);
         cout << ")\n";
 
-        // 1.3.6.2: Обнулить четыре младших бита
+        // 2 обнулить 4 младших бита
         int mask2 = 0xFFFFFFF0;
         int result2 = result1 & mask2;
 
@@ -117,28 +117,27 @@ void BitwiseOperations(string inputFile, string outputFile, int n) {
         printBinary(result2);
         cout << ")\n";
 
-        // 1.3.6.3: Умножить на 128
-        int result3 = result2 << 7; // 2^7 = 128
+        // 3 умножить на 128
+        int result3 = result2 << 7; // 2 в 7 = 128
 
         cout << "После упр.3: " << result3 << " (двоично: ";
         printBinary(result3);
         cout << ")\n";
 
-        // 1.3.6.4: Разделить на 128
+        // 4 разделить на 128
         int result4 = result3 >> 7;
 
         cout << "После упр.4: " << result4 << " (двоично: ";
         printBinary(result4);
         cout << ")\n";
 
-        // 1.3.6.5: Установить n-ый бит в 1, используя маску 2 (единица в старшем разряде)
+        // 5 установить n бит в 1 используя маску 2
         int mask5 = 1 << (31 - n);
         int result5 = result4 | mask5;
 
         cout << "После упр.5: " << result5 << " (двоично: ";
         printBinary(result5);
         cout << ")\n\n";
-
         out << result5 << endl;
     }
 
